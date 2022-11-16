@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- CSS Style Link -->
+    <link rel="stylesheet" href="styles.css" />
     <!-- Bootstap CSS Link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -14,6 +16,76 @@
     />
   </head>
   <body>
+    <header>
+      <nav class="navbar navbar-expand-xxl bg-light px-3">
+        <ul class="navbar-nav d-flex flex-row">
+          <li class="nav-item">
+            <img
+              src="Images/Amazon_logo.svg"
+              width="80"
+              alt="Amazon_logo"
+              class="mt-2 px-1"
+            />
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="#">Fresh</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <button type="button" class="btn btn-warning">
+            <img
+              src="https://img.icons8.com/color/48/null/add-shopping-cart--v1.png"
+              width="35"
+            />
+          </button>
+        </ul>
+      </nav>
+    </header>
+    <main
+      class="container-sm my-5 px-4 d-flex flex-column"
+      style="border: 1px solid #000"
+    >
+      <!-- Apple Card -->
+      <div class="card my-5 mx-auto" style="width: 18rem">
+        <img src="Images/Apple.jpeg" class="card-img-top" alt="Apple" />
+        <div class="card-body text-center">
+          <h5 class="card-title">Apple</h5>
+          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
+          <a href="#" class="btn btn-primary col-5">-</a>
+          <a href="#" class="btn btn-primary col-5">+</a>
+        </div>
+      </div>
+      <!-- Banana Card -->
+      <div class="card my-5 mx-auto" style="width: 18rem">
+        <img src="Images/Banana.jpeg" class="card-img-top" alt="Banana" />
+        <div class="card-body text-center">
+          <h5 class="card-title">Banana</h5>
+          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
+          <a href="#" class="btn btn-primary col-5">-</a>
+          <a href="#" class="btn btn-primary col-5">+</a>
+        </div>
+      </div>
+      <!-- Orange card -->
+      <div class="card my-5 mx-auto" style="width: 18rem">
+        <img src="Images/Orange.jpeg" class="card-img-top" alt="Orange" />
+        <div class="card-body text-center">
+          <h5 class="card-title">Orange</h5>
+          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
+          <a href="#" class="btn btn-primary col-5">-</a>
+          <a href="#" class="btn btn-primary col-5">+</a>
+        </div>
+      </div>
+      <!-- Pear Card -->
+      <div class="card my-5 mx-auto" style="width: 18rem">
+        <img src="Images/Pear.jpeg" class="card-img-top" alt="Pear" />
+        <div class="card-body text-center">
+          <h5 class="card-title">Pear</h5>
+          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
+          <a href="#" class="btn btn-primary col-5">-</a>
+          <a href="#" class="btn btn-primary col-5">+</a>
+        </div>
+      </div>
+    </main>
     <!-- Bootstrap JS Link -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
