@@ -8,3 +8,45 @@
   --bs-btn-padding-x: 0;
   font-size: 1.5rem;
 }
+
+.btn-primary.add:active {
+  --bs-btn-active-bg: #00ff0d;
+  --bs-btn-active-border-color: #10c200;
+}
+
+.btn-primary.remove:active {
+  --bs-btn-active-bg: #ff0000;
+  --bs-btn-active-border-color: #b70000;
+}
+
+.hide {
+  transform: scale(0, 0);
+  transition: 0.3s;
+}
+
+.btn .badge {
+  position: absolute;
+  top: 3px;
+}
+
+@media only screen and (min-width: 576px) {
+  #main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #main {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #main {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
+}

@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- CSS Style Link -->
-    <link rel="stylesheet" href="styles.css" />
     <!-- Bootstap CSS Link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -14,6 +12,13 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <!-- Bootstrap icon link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <!-- CSS Style Sheet Link -->
+    <link rel="stylesheet" href="styles.css" type="text/css" />
   </head>
   <body>
     <header>
@@ -24,7 +29,7 @@
               src="Images/Amazon_logo.svg"
               width="80"
               alt="Amazon_logo"
-              class="mt-2 px-1"
+              class="mt-2 me-2"
             />
           </li>
           <li class="nav-item">
@@ -32,18 +37,57 @@
           </li>
         </ul>
         <ul class="navbar-nav">
-          <button type="button" class="btn btn-warning">
-            <img
-              src="https://img.icons8.com/color/48/null/add-shopping-cart--v1.png"
-              width="35"
-            />
+          <!-- Cart Button -->
+          <button
+            type="button"
+            class="btn btn-warning"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasResponsive"
+            aira-controls="offcanvasResponsive"
+          >
+            <i class="bi bi-cart2"></i
+            ><span
+              class="badge rounded-pill badge-notification bg-danger hide"
+              id="badge"
+              >0</span
+            >
           </button>
+          <div class="alert alert-info d-none d-lg-none">
+            Resize your browser to show the responsive offcanvas toggle.
+          </div>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasResponsive"
+            aria-labelledby="offcanvasResponsiveLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">
+                Your Cart
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                data-bs-target="#offcanvasResponsive"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <section class="mb-0 fs-5">
+                <ul class="list-group list-group-flush" id="cart">
+                  <p>There are no Items in the cart</p>
+                </ul>
+              </section>
+            </div>
+          </div>
         </ul>
       </nav>
     </header>
     <main
-      class="container-sm my-5 px-4 d-flex flex-column"
+      class="container-sm my-5 mx-auto"
       style="border: 1px solid #000"
+      id="main"
     >
       <!-- Apple Card -->
       <div class="card my-5 mx-auto" style="width: 18rem">
@@ -51,38 +95,13 @@
         <div class="card-body text-center apple">
           <h5 class="card-title">Apple</h5>
           <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
-          <a href="#" class="btn btn-primary col-5 remove">-</a>
-          <a href="#" class="btn btn-primary col-5 add">+</a>
-        </div>
-      </div>
-      <!-- Banana Card -->
-      <div class="card my-5 mx-auto" style="width: 18rem">
-        <img src="Images/Banana.jpeg" class="card-img-top" alt="Banana" />
-        <div class="card-body text-center banana">
-          <h5 class="card-title">Banana</h5>
-          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
-          <a href="#" class="btn btn-primary col-5 remove">-</a>
-          <a href="#" class="btn btn-primary col-5 add">+</a>
-        </div>
-      </div>
-      <!-- Orange card -->
-      <div class="card my-5 mx-auto" style="width: 18rem">
-        <img src="Images/Orange.jpeg" class="card-img-top" alt="Orange" />
-        <div class="card-body text-center orange">
-          <h5 class="card-title">Orange</h5>
-          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
-          <a href="#" class="btn btn-primary col-5 remove">-</a>
-          <a href="#" class="btn btn-primary col-5 add">+</a>
-        </div>
-      </div>
-      <!-- Pear Card -->
-      <div class="card my-5 mx-auto" style="width: 18rem">
-        <img src="Images/Pear.jpeg" class="card-img-top" alt="Pear" />
-        <div class="card-body text-center pear">
-          <h5 class="card-title">Pear</h5>
-          <p class="card-text fs-5">Price: ₹ <span class="pricing">50</span></p>
-          <a href="#" class="btn btn-primary col-5 remove">-</a>
-          <a href="#" class="btn btn-primary col-5 add">+</a>
+          <a href="#" class="btn btn-primary col-5 remove"
+            ><i class="bi bi-dash-lg"></i
+          ></a>
+          <span id="quantity" class="quantity fs-4 px-2">0</span>
+          <a href="#" class="btn btn-primary col-5 add"
+            ><i class="bi bi-plus-lg"></i
+          ></a>
         </div>
       </div>
     </main>
