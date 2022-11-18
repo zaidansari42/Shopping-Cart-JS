@@ -1,7 +1,7 @@
 'use strict';
 //
 // Shopping Cart
-const cart = [];
+const cart = JSON.parse(localStorage.getItem('data')) || [];
 
 // Creating the Prototype of the product
 
@@ -32,13 +32,17 @@ const generateShop = function () {
       // Destructuring
       let { id, item, price, imgSource, quantity } = x;
 
+      let search = cart.find((y) => x.id === y.id) || [];
+
       return `<div class="card my-2 mx-2 mx-auto" style="width:15rem">
       <img src="Images/${imgSource}" class="card-img-top" alt="${item}" />
       <div class="card-body text-center ${item}" id="${id}">
         <h5 class="card-title">${item}</h5>
         <p class="card-text fs-5">Price: ₹ <span class="pricing">${price}</span></p>
         <i class="bi bi-dash-lg btn btn-primary col-4 remove"></i>
-        <span class="quantity fs-4 px-2">0</span>
+        <span class="quantity fs-4 px-2">${
+          search.quantity ? search.quantity : 0
+        }</span>
         <i class="bi bi-plus-lg btn btn-primary col-4 add"></i>
       </div>
       </div>`;
@@ -61,25 +65,7 @@ const cartContainer = document.getElementById('cart');
 let total,
   totalCartValue = 0;
 
-const updateCart = function (product) {
-  // let id = document.querySelector(`#${product.id}`);
-
-  const search = cart.find((x) => x.id === product.id);
-
-  if (search === undefined) {
-    product.querySelector('.quantity').textContent = 0;
-  } else {
-    product.querySelector('.quantity').textContent = search.quantity;
-  }
-
-  if (cart.length >= 1) {
-    total = cart.map((x) => x.quantity).reduce((acc, cur) => acc + cur);
-    totalCartValue = totalValue();
-  } else {
-    total = 0;
-    totalCartValue = 0;
-  }
-
+const badgeVisible = function () {
   if (total !== 0) {
     badge.classList.remove('hide');
 
@@ -89,16 +75,42 @@ const updateCart = function (product) {
 
     badge.classList.add('hide');
   }
+};
+
+const totalProducts = function () {
+  if (cart.length >= 1) {
+    total = cart.map((x) => x.quantity).reduce((acc, cur) => acc + cur);
+    totalCartValue = totalValue();
+  } else {
+    total = 0;
+    totalCartValue = 0;
+  }
+};
+
+const updateCart = function (product) {
+  const search = cart.find((x) => x.id === product.id);
+
+  if (search === undefined) {
+    product.querySelector('.quantity').textContent = 0;
+  } else {
+    product.querySelector('.quantity').textContent = search.quantity;
+  }
+
+  totalProducts();
+
+  badgeVisible();
 
   if (total > 0) {
     generateCart();
   } else {
     emptyCart();
   }
+
+  localStorage.setItem('data', JSON.stringify(cart));
 };
 
-// Decrementing the fruit
-let increment = function (e) {
+// Incrementing the fruit
+const increment = function (e) {
   // Capturing the ID of the clicked button
   let selectedItem = e.target.parentElement;
   let selectedItemName = selectedItem.querySelector('.card-title').textContent;
@@ -110,10 +122,10 @@ let increment = function (e) {
   if (search === undefined) {
     cart.push({
       id: selectedItem.id,
-      item: selectedItemName,
+      // item: selectedItemName,
       quantity: 1,
-      price: searchPrice,
-      url: searchUrl,
+      // price: searchPrice,
+      // url: searchUrl,
     });
   } else {
     search.quantity++;
@@ -123,7 +135,7 @@ let increment = function (e) {
 };
 
 // Incrementing the fruit
-let decrement = function (e) {
+const decrement = function (e) {
   let selectedItem = e.target.parentElement;
 
   let search = cart.find((el) => el.id === selectedItem.id);
@@ -151,25 +163,34 @@ removeBtn.forEach((el) => el.addEventListener('click', decrement));
 const generateCart = function () {
   cartContainer.innerHTML =
     cart
-      .map(
-        (x) => `<li class="list-group-item"><section
+      .map((x) => {
+        // Destructring from cart
+        let { id, quantity } = x;
+
+        // Getting the object details from total items
+        let search = totalItems.find((x) => x.id === id);
+
+        // Destructuring from total items
+        let { item, price, imgSource } = search;
+
+        return `<li class="list-group-item"><section
     class="item d-flex justify-content-between align-items-center">
     <div>
-      <h5>${x.item}</h5>
+      <h5>${item}</h5>
       <ul class="ps-0">
         <li class="list-group-item fs-6">
-          Quantity: ${x.quantity}
+          Quantity: ${quantity}
         </li>
         <li class="list-group-item fs-6">
-          Price: ₹${x.quantity * x.price}
+          Price: ₹${quantity * price}
         </li>
       </ul>
     </div>
     <div>
-      <img src="Images/${x.url}" alt="item" width="100" />
+      <img src="Images/${imgSource}" alt="${item}" width="100" />
     </div>
-  </section></li>`
-      )
+  </section></li>`;
+      })
       .join('') +
     `<section class="total-cart-value d-flex justify-content-between"><p>Total Price:</p><span id="finalBill" class="fw-bold fs-5">₹ ${totalCartValue}</span></section>`;
 };
@@ -181,5 +202,29 @@ const emptyCart = function () {
 
 // Total Cart Value
 const totalValue = function () {
-  return cart.map((x) => x.price * x.quantity).reduce((acc, cur) => acc + cur);
+  return cart
+    .map((x) => {
+      // Finding item details from total Items
+      let search = totalItems.find((y) => y.id === x.id);
+
+      // Destructuring the price and quantiy
+      let { price } = search;
+
+      return price * x.quantity;
+    })
+    .reduce((acc, cur) => acc + cur);
 };
+
+// Initial function
+const init = function () {
+  if (cart.length >= 1) {
+    totalCartValue = totalValue();
+    generateCart();
+    totalProducts();
+    badgeVisible();
+  } else {
+    totalProducts();
+    badgeVisible();
+  }
+};
+init();
