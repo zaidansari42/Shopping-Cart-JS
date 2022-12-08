@@ -29,6 +29,71 @@
   top: 3px;
 }
 
+.main {
+  border: 2px solid;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 0 20px 2px #0d6efd;
+
+  transition: 0.5s;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 5px 2px black;
+}
+
+.main-title {
+  color: #488d1c;
+  font-size: 50px;
+  font-weight: bolder;
+
+  text-transform: uppercase;
+}
+
+.vegetable_img {
+  position: relative;
+}
+
+.vegetable_img figure {
+  margin: 0;
+}
+.vegetable_img figure img {
+  width: 100%;
+}
+
+.vegetable_img span {
+  z-index: 999;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  right: 0;
+  top: 44%;
+  background: #428713;
+  padding: 19px 27px;
+  border-radius: 88px;
+  margin-right: -20px;
+  position: absolute;
+  color: #fff;
+  font-size: 19px;
+}
+
+.footer {
+  color: white;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #10c200;
+
+  transition: 0.3s;
+}
+
 @media only screen and (min-width: 576px) {
   #main {
     display: grid;
