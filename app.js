@@ -4,7 +4,6 @@
 const cart = JSON.parse(localStorage.getItem('data')) || [];
 
 // Creating the Prototype of the product
-
 const Product = function (id, item, price, imgSource, quantity) {
   this.id = id;
   this.item = item;
