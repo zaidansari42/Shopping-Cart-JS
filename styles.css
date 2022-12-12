@@ -40,10 +40,6 @@
   transition: 0.5s;
 }
 
-.btn-primary:hover {
-  box-shadow: 0 0 5px 2px black;
-}
-
 .main-title {
   color: #488d1c;
   font-size: 50px;
